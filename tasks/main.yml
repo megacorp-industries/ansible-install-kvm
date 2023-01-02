@@ -1,48 +1,48 @@
 ---
 
-- include: set_facts.yml
+- include_tasks: set_facts.yml
 
-- include: hw_virtualization_check.yml
+- include_tasks: hw_virtualization_check.yml
   tags:
     - config_vms
 
-- include: "install_packages_{{ ansible_os_family | lower }}.yml"
+- include_tasks: "install_packages_{{ ansible_os_family | lower }}.yml"
   when: ansible_os_family in ["Debian", "RedHat"]
 
-- include: config_kvm.yml
+- include_tasks: config_kvm.yml
   tags:
     - config_kvm
   when: kvm_config
 
-- include: users.yml
+- include_tasks: users.yml
   tags:
     - config_users
   when:
     - kvm_config_users
     - kvm_users is defined
 
-- include: config_ssh.yml
+- include_tasks: config_ssh.yml
   tags:
     - config_ssh
   when:
     - kvm_allow_root_ssh is defined
     - kvm_allow_root_ssh
 
-- include: config_virtual_networks.yml
+- include_tasks: config_virtual_networks.yml
   tags:
     - config_virtual_networks
   when:
     - kvm_config_virtual_networks
     - kvm_virtual_networks is defined
 
-- include: config_storage_pools.yml
+- include_tasks: config_storage_pools.yml
   tags:
     - config_storage_pools
   when:
     - kvm_config_storage_pools
     - kvm_storage_pools is defined
 
-- include: config_vms.yml
+- include_tasks: config_vms.yml
   tags:
     - config_vms
   when:
@@ -50,10 +50,10 @@
     - kvm_manage_vms
     - kvm_vms is defined
 
-- include: system_tweaks.yml
+- include_tasks: system_tweaks.yml
   when: kvm_enable_system_tweaks
 
-- include: apparmor.yml
+- include_tasks: apparmor.yml
   when:
     - kvm_disable_apparmor
     - ansible_os_family == "Debian"
