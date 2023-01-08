@@ -196,7 +196,7 @@ kvm_unix_sock_dir: /var/run/libvirt
 
 # Defines users to add to libvirt group
 kvm_users:
-  [terraform]
+  - terraform
   # - remote
 
 # Define KVM Networks to create
