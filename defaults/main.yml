@@ -28,7 +28,7 @@ kvm_auth_unix_rw: none
 kvm_config: true
 
 # Defines if kvm_users should be added to libvirtd for managing KVM
-kvm_config_users: false
+kvm_config_users: true
 
 # Defines if kvm virtual networks should be configured
 # if set to true ensure that your underlying bridges have been created
@@ -196,7 +196,7 @@ kvm_unix_sock_dir: /var/run/libvirt
 
 # Defines users to add to libvirt group
 kvm_users:
-  []
+  [terraform]
   # - remote
 
 # Define KVM Networks to create
